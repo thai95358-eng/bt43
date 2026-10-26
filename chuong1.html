@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chương 1: Tổng quan C++ & Nhập Xuất</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">🚀 C++ Learning Hub</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="chuong1.html" class="active">Chương 1</a></li>
+                <li><a href="chuong2.html">Chương 2</a></li>
+                <li><a href="thuchanh.html">Thực hành & Chấm điểm</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="card">
+            <h1>Chương 1: Tổng quan về C++ và Nhập Xuất Cơ Bản</h1>
+            <hr style="margin: 1rem 0; border: 0; border-top: 1px solid var(--border-color);">
+            
+            <h3>1. Cấu trúc cơ bản của một chương trình C++</h3>
+            <p>Mọi chương trình C++ đều bắt đầu thực thi từ hàm <code>main()</code>:</p>
+            <pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    cout << "Chao mung den voi C++!" << endl;
+    return 0;
+}</code></pre>
+
+            <h3>2. Biến và Kiểu dữ liệu</h3>
+            <p>C++ hỗ trợ các kiểu dữ liệu phổ biến: <code>int</code>, <code>float</code>, <code>double</code>, <code>char</code>, <code>bool</code>.</p>
+
+            <h3 style="margin-top: 2rem;">Danh sách Bài tập Chương 1</h3>
+            
+            <div style="margin-top: 1rem; border: 1px solid var(--border-color); border-radius: 8px; padding: 1.5rem; margin-bottom: 1rem;">
+                <h4>Bài 1.1: Tính tổng hai số nguyên <span class="badge badge-easy">Dễ</span></h4>
+                <p>Viết chương trình nhập vào 2 số nguyên $a$ và $b$, in ra màn hình tổng của chúng.</p>
+                <details style="margin-top: 0.75rem;">
+                    <summary style="cursor: pointer; color: var(--primary-color); font-weight: 600;">Xem lời giải</summary>
+                    <pre><code>#include &lt;iostream&gt;
+using namespace std;
+int main() {
+    int a, b;
+    cin >> a >> b;
+    cout << "Tong = " << a + b;
+    return 0;
+}</code></pre>
+                </details>
+                <a href="thuchanh.html?bai=1" class="btn" style="margin-top: 1rem; font-size: 0.85rem; padding: 0.5rem 1rem;">Làm bài thực hành này</a>
+            </div>
+
+            <div style="border: 1px solid var(--border-color); border-radius: 8px; padding: 1.5rem;">
+                <h4>Bài 1.2: Kiểm tra số chẵn lẻ <span class="badge badge-medium">Trung bình</span></h4>
+                <p>Nhập vào một số nguyên $n$, kiểm tra xem $n$ là số chẵn hay số lẻ.</p>
+                <details style="margin-top: 0.75rem;">
+                    <summary style="cursor: pointer; color: var(--primary-color); font-weight: 600;">Xem lời giải</summary>
+                    <pre><code>#include &lt;iostream&gt;
+using namespace std;
+int main() {
+    int n;
+    cin >> n;
+    if (n % 2 == 0) cout << n << " la so chan";
+    else cout << n << " la so le";
+    return 0;
+}</code></pre>
+                </details>
+                <a href="thuchanh.html?bai=2" class="btn" style="margin-top: 1rem; font-size: 0.85rem; padding: 0.5rem 1rem;">Làm bài thực hành này</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 - C++ Learning Hub</p>
+    </footer>
+</body>
+</html>

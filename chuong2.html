@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chương 2: Cấu Trúc Điều Khiển</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">🚀 C++ Learning Hub</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="chuong1.html">Chương 1</a></li>
+                <li><a href="chuong2.html" class="active">Chương 2</a></li>
+                <li><a href="thuchanh.html">Thực hành & Chấm điểm</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="card">
+            <h1>Chương 2: Cấu Trúc Điều Khiển & Vòng Lặp</h1>
+            <hr style="margin: 1rem 0; border: 0; border-top: 1px solid var(--border-color);">
+            
+            <h3>1. Câu lệnh rẽ nhánh (if-else)</h3>
+            <p>Dùng để thực thi các nhánh lệnh khác nhau dựa trên điều kiện logic.</p>
+            <pre><code>if (diem >= 5.0) {
+    cout << "Dau mon";
+} else {
+    cout << "Thi lai";
+}</code></pre>
+
+            <h3>2. Vòng lặp (for, while)</h3>
+            <p>Dùng để lặp lại các khối câu lệnh một số lần nhất định.</p>
+
+            <h3 style="margin-top: 2rem;">Danh sách Bài tập Chương 2</h3>
+            
+            <div style="margin-top: 1rem; border: 1px solid var(--border-color); border-radius: 8px; padding: 1.5rem; margin-bottom: 1rem;">
+                <h4>Bài 2.1: Tính giai thừa <span class="badge badge-medium">Trung bình</span></h4>
+                <p>Nhập số nguyên dương $n$, tính và in ra giá trị $n!$.</p>
+                <details style="margin-top: 0.75rem;">
+                    <summary style="cursor: pointer; color: var(--primary-color); font-weight: 600;">Xem lời giải</summary>
+                    <pre><code>#include &lt;iostream&gt;
+using namespace std;
+int main() {
+    int n;
+    long long gt = 1;
+    cin >> n;
+    for(int i = 1; i <= n; i++) gt *= i;
+    cout << "Giai thua = " << gt;
+    return 0;
+}</code></pre>
+                </details>
+                <a href="thuchanh.html?bai=3" class="btn" style="margin-top: 1rem; font-size: 0.85rem; padding: 0.5rem 1rem;">Làm bài thực hành này</a>
+            </div>
+
+            <div style="border: 1px solid var(--border-color); border-radius: 8px; padding: 1.5rem;">
+                <h4>Bài 2.2: Kiểm tra số nguyên tố <span class="badge badge-hard">Khó</span></h4>
+                <p>Nhập số nguyên $n$, kiểm tra xem $n$ có phải là số nguyên tố hay không.</p>
+                <details style="margin-top: 0.75rem;">
+                    <summary style="cursor: pointer; color: var(--primary-color); font-weight: 600;">Xem lời giải</summary>
+                    <pre><code>#include &lt;iostream&gt;
+#include &lt;cmath&gt;
+using namespace std;
+int main() {
+    int n;
+    cin >> n;
+    if (n < 2) { cout << "Khong phai SNT"; return 0; }
+    bool nt = true;
+    for(int i = 2; i <= sqrt(n); i++) {
+        if(n % i == 0) { nt = false; break; }
+    }
+    if(nt) cout << n << " la so nguyen to";
+    else cout << n << " khong phai so nguyen to";
+    return 0;
+}</code></pre>
+                </details>
+                <a href="thuchanh.html?bai=4" class="btn" style="margin-top: 1rem; font-size: 0.85rem; padding: 0.5rem 1rem;">Làm bài thực hành này</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 - C++ Learning Hub</p>
+    </footer>
+</body>
+</html>

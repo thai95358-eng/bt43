@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phần Thực hành & Chấm điểm C++</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">🚀 C++ Learning Hub</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="chuong1.html">Chương 1</a></li>
+                <li><a href="chuong2.html">Chương 2</a></li>
+                <li><a href="thuchanh.html" class="active">Thực hành & Chấm điểm</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="card">
+            <h1>Phần Thực hành & Chấm điểm Tự Động</h1>
+            <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Nhập thông tin sinh viên, chọn bài tập cần làm và dán mã nguồn C++ để hệ thống chấm điểm tự động.</p>
+            
+            <form id="submitForm">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                    <div>
+                        <label style="display: block; font-weight: 600; margin-bottom: 0.5rem;">Mã Sinh Viên (MSSV):</label>
+                        <input type="text" id="mssv" required placeholder="Ví dụ: 21001234" style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 8px;">
+                    </div>
+                    <div>
+                        <label style="display: block; font-weight: 600; margin-bottom: 0.5rem;">Họ và Tên:</label>
+                        <input type="text" id="hoten" required placeholder="Ví dụ: Nguyễn Văn A" style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 8px;">
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 1rem;">
+                    <label style="display: block; font-weight: 600; margin-bottom: 0.5rem;">Chọn Bài Tập Thực Hành:</label>
+                    <select id="baiTap" style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 8px;">
+                        <option value="1">Bài 1.1: Tính tổng hai số nguyên</option>
+                        <option value="2">Bài 1.2: Kiểm tra số chẵn lẻ</option>
+                        <option value="3">Bài 2.1: Tính giai thừa</option>
+                        <option value="4">Bài 2.2: Kiểm tra số nguyên tố</option>
+                    </select>
+                </div>
+
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; font-weight: 600; margin-bottom: 0.5rem;">Lời giải (Mã nguồn C++):</label>
+                    <textarea id="sourceCode" rows="8" required placeholder="// Viết hoặc dán mã nguồn C++ tại đây..." style="width: 100%; padding: 1rem; font-family: 'Fira Code', monospace; background: var(--code-bg); color: var(--code-text); border-radius: 8px; border: none;"></textarea>
+                </div>
+
+                <button type="submit" class="btn" style="width: 100%;">Nộp bài & Chấm điểm ngay</button>
+            </form>
+
+            <div id="resultBox" style="display: none; margin-top: 2rem; padding: 1.5rem; border-radius: 8px; background: #f0fdf4; border: 1px solid #bbf7d0;">
+                <h3 style="color: #166534; margin-bottom: 0.5rem;">Kết quả chấm bài</h3>
+                <p id="resultScore" style="font-size: 1.25rem; font-weight: bold; color: #15803d;"></p>
+                <p id="resultFeedback" style="margin-top: 0.5rem; color: #166534;"></p>
+            </div>
+        </div>
+
+        <!-- Bảng lịch sử nộp bài -->
+        <div class="card">
+            <h2>📜 Lịch sử Nộp bài Thực hành</h2>
+            <table style="width: 100%; margin-top: 1rem; border-collapse: collapse;">
+                <thead>
+                    <tr style="border-bottom: 2px solid var(--border-color); text-align: left;">
+                        <th style="padding: 0.75rem;">MSSV</th>
+                        <th style="padding: 0.75rem;">Họ Tên</th>
+                        <th style="padding: 0.75rem;">Bài Tập</th>
+                        <th style="padding: 0.75rem;">Điểm Số</th>
+                    </tr>
+                </thead>
+                <tbody id="historyTable">
+                    <tr>
+                        <td colspan="4" style="padding: 1rem; text-align: center; color: var(--text-muted);">Chưa có bài nộp nào trong phiên này.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 - C++ Learning Hub</p>
+    </footer>
+
+    <script>
+        // Tự động nhận diện bài tập từ URL nếu bấm từ trang chương học
+        const urlParams = new URLSearchParams(window.location.search);
+        const bai = urlParams.get('bai');
+        if(bai) { document.getElementById('baiTap').value = bai; }
+
+        document.getElementById('submitForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const mssv = document.getElementById('mssv').value;
+            const hoten = document.getElementById('hoten').value;
+            const baiTapText = document.getElementById('baiTap').options[document.getElementById('baiTap').selectedIndex].text;
+            const code = document.getElementById('sourceCode').value;
+
+            // Bộ chấm điểm tự động mô phỏng
+            let score = 10;
+            let feedback = "Mã nguồn hợp lệ, đúng cấu trúc hàm main và sử dụng tốt thư viện iostream.";
+            
+            if (!code.includes('#include')) {
+                score -= 4;
+                feedback = "Thiếu khai báo thư viện `#include <iostream>`.";
+            } else if (!code.includes('main')) {
+                score -= 4;
+                feedback = "Thiếu cấu trúc hàm `main()` chuẩn trong C++.";
+            } else if (!code.includes('cout') && !code.includes('cin')) {
+                score -= 2;
+                feedback = "Chương trình chưa thực hiện nhập/xuất dữ liệu (cin/cout).";
+            }
+
+            // Hiển thị kết quả
+            const resultBox = document.getElementById('resultBox');
+            resultBox.style.display = 'block';
+            document.getElementById('resultScore').innerText = `Điểm số: ${score} / 10.0`;
+            document.getElementById('resultFeedback').innerText = `Nhận xét: ${feedback}`;
+
+            // Cập nhật bảng lịch sử
+            const historyTable = document.getElementById('historyTable');
+            if (historyTable.innerHTML.includes('Chưa có bài nộp')) {
+                historyTable.innerHTML = '';
+            }
+            const newRow = `
+                <tr style="border-bottom: 1px solid var(--border-color);">
+                    <td style="padding: 0.75rem;">${mssv}</td>
+                    <td style="padding: 0.75rem;">${hoten}</td>
+                    <td style="padding: 0.75rem;">${baiTapText}</td>
+                    <td style="padding: 0.75rem;"><span class="badge badge-easy">${score}/10</span></td>
+                </tr>
+            `;
+            historyTable.innerHTML += newRow;
+
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
